@@ -8,27 +8,68 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <p id="timer"></p>
-    <div class="panel">
-        <div class="result">
-  
+    <section class="header">
+        <h1 a href="#">View High Scores</a></h1>
+            <div id="timer">filler</div>
+    </section>
+    <section class="rules">
+        <h1>Coding Quiz Challenge</h1>
+        <p>Try to answer the following code-related questions within the time limit.<br>
+        Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+    </section>
+    
+    <div class="container">
+        
+    <button class="start-btn">Start Quiz</button>
+    <div id="countdown"></div>
+
+    <!--info box-->
+    <div class="quiz-box">
+        <div class="title">
+            <span>some rules of the quiz</span>          
         </div>
-        <div class="question-container" id="question">
-            Question goes here.
+        <div class="quiz-list">
+            <div class="question"></div>
+            <div class="question"></div>
+            <div class="question"></div>
+            <div class="question"></div>
+            <div class="question"></div>
         </div>
-        <div class="option-container">
-            <button class="option" onclick="" id="op1" >option1</button>
+    </div>
+    
+    
+    
+    
+    
+    
+    <!--quiz section-->
+    <div id="quiz">
+        <h2>JavaScript Quiz</h2>
+        <form id="quiz-form">
+          <h3>Question 1</h3>
+          <p>What is the result of 2 + 2?</p>
+          <input type="radio" name="q1" value="a">a) 2<br>
+          <input type="radio" name="q1" value="b">b) 3<br>
+          <input type="radio" name="q1" value="c">c) 4<br>
       
-            <button class="option" id="op2" >option2</button>
+          <h3>Question 2</h3>
+          <p>What is the result of "2" + 2?</p>
+          <input type="radio" name="q2" value="a">a) "2"<br>
+          <input type="radio" name="q2" value="b">b) "4"<br>
+          <input type="radio" name="q2" value="c">c) "22"<br>
       
-            <button class="option" id="op3">option3</button>
+          <h3>Question 3</h3>
+          <p>What is the result of 10 % 3?</p>
+          <input type="radio" name="q3" value="a">a) 1<br>
+          <input type="radio" name="q3" value="b">b) 3<br>
+          <input type="radio" name="q3" value="c">c) 10<br>
       
-            <button class="option" id="op4">option4</button>
-        </div>
-        <div class="navigation">
-            <button class="evaluate">Evaluate</button>
-            <button class="next">Next</button>
-        </div>
+          <br>
+          <input type="submit" value="Submit">
+        </form>
+        <div id="results"></div>
+      </div>
+      
     </div>
     <script src="assets/js/script.js"></script>
 </body>
