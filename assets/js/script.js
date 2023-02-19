@@ -113,4 +113,9 @@ function startTimer() {
 }
 
 // Add event listener to start button
-startButton.addEventListener("click", startTimer);
+startButton.addEventListener("click", function () {
+  startTimer;
+  document.getElementById('header').style.display = 'none';
+  
+  
+});

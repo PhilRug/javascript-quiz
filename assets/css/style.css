@@ -90,8 +90,6 @@
 	border-radius: 12px;
 	padding: 20px 20px;
 	margin-bottom: 10px;
-	
-
 }
 
 .option:hover {
@@ -103,9 +101,4 @@
 	display: flex;
 	align-items: center;
 	margin: 15px;
-}
-
-
-.btn {
-
 }
