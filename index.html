@@ -21,55 +21,27 @@
     <div class="container">
         
     <button class="start-btn">Start Quiz</button>
-    <div id="countdown"></div>
 
-    <!--info box-->
-    <div class="quiz-box">
-        <div class="title">
-            <span>some rules of the quiz</span>          
-        </div>
-        <div class="quiz-list">
-            <div class="question"></div>
-            <div class="question"></div>
-            <div class="question"></div>
-            <div class="question"></div>
-            <div class="question"></div>
-        </div>
-    </div>
-    
-    
-    
-    
-    
-    
-    <!--quiz section-->
-    <div id="quiz">
-        <h2>JavaScript Quiz</h2>
         <form id="quiz-form">
-          <h3>Question 1</h3>
-          <p>What is the result of 2 + 2?</p>
-          <input type="radio" name="q1" value="a">a) 2<br>
-          <input type="radio" name="q1" value="b">b) 3<br>
-          <input type="radio" name="q1" value="c">c) 4<br>
-      
-          <h3>Question 2</h3>
-          <p>What is the result of "2" + 2?</p>
-          <input type="radio" name="q2" value="a">a) "2"<br>
-          <input type="radio" name="q2" value="b">b) "4"<br>
-          <input type="radio" name="q2" value="c">c) "22"<br>
-      
-          <h3>Question 3</h3>
-          <p>What is the result of 10 % 3?</p>
-          <input type="radio" name="q3" value="a">a) 1<br>
-          <input type="radio" name="q3" value="b">b) 3<br>
-          <input type="radio" name="q3" value="c">c) 10<br>
-      
-          <br>
-          <input type="submit" value="Submit">
+          <div class="quiz-title" id="question"></div>
+            <div class="btn">
+                <div class="option" name="answer" value="0" id="answer0"><label for="answer0" id="answer0label"></label></div>
+            </div>
+            <div class="btn">
+                <div class="option" name="answer" value="1" id="answer1"><label for="answer1" id="answer1label"></label></div>
+            </div>
+            <div class="btn">
+                <div class="option" name="answer" value="2" id="answer2"><label for="answer2" id="answer2label"></label></div>
+            </div>
+            <div class="btn">
+                <div class="option" name="answer" value="3" id="answer2"><label for="answer2" id="answer3label"></label></div>
+            </div>
         </form>
+        <button id="submit">Submit</button>
+        <div id="result"></div>
+
         <div id="results"></div>
-      </div>
-      
+    </section> 
     </div>
     <script src="assets/js/script.js"></script>
 </body>
