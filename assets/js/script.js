@@ -97,7 +97,7 @@ const timerDuration = 75;
 const timerElement = document.getElementById("timer");
 
 // Get the start button element
-const startButton = document.getElementById("start-btn");
+const startButton = document.getElementById("startBtn");
 
 // Function to start the timer
 function startTimer() {
@@ -114,8 +114,10 @@ function startTimer() {
 
 // Add event listener to start button
 startButton.addEventListener("click", function () {
-  startTimer;
-  document.getElementById('header').style.display = 'none';
-  
-  
+  startTimer();
+  document.getElementById('ruleEl').style.display = 'none';
+  document.getElementById('startBtn').style.display = 'none';
+  document.querySelector('quiz-title').style.display = 'flex';
+  document.querySelector('option').style.display = 'flex';
 });
+  
