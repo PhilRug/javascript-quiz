@@ -80,11 +80,11 @@
 .quiz-title {
 	font-size: 40px;
 	font-weight: 600px;
-	display: flex;
+	display: none;
 }
 
 .option {
-	display: flex;
+	display: none;
 	background-color: var(--dark-purple);
 	color: var(--white);
 	list-style: none;

@@ -120,9 +120,13 @@ function startTimer() {
 // Add event listener to start button
 startButton.addEventListener("click", function () {
   startTimer();
+  showQuestion();
   document.getElementById('ruleEl').style.display = 'none';
   document.getElementById('startBtn').style.display = 'none';
-  document.getElementById('quiz-title').style.display = 'flex';
-  document.getElementById('option').style.display = 'flex';
+  var quizTitle = document.querySelector('quiz-title');
+  quizTitle.style.display = 'flex';
+  //document.querySelector('.quiz-title').style.display = 'flex';
+  //document.querySelectorAll('.option').style.display = 'flex';
+  var options = document.querySelectorAll('.option');
 });
   
