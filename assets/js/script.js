@@ -81,8 +81,12 @@ choicesEl.addEventListener("click", function (e) {
   let correctChoice = quiz[currentQuestion].correct;
   if (value === correctChoice) {
     console.log("Correct");
+    addEventListener("click", checkAnswer);
+    addEventListener("click", nextQuestion);
   } else {
     console.log("Wrong");
+    addEventListener("click", checkAnswer);
+    addEventListener("click", nextQuestion);
   }
 });
 
