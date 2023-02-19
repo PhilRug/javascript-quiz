@@ -23,11 +23,16 @@ let currentQuestion = 0;
 let score = 0;
 
 function showQuestion() {  
-  document.getElementById("question").textContent = quiz[currentQuestion].question;
-  document.getElementById("answer0label").textContent = quiz[currentQuestion].answers[0];
-  document.getElementById("answer1label").textContent = quiz[currentQuestion].answers[1];
-  document.getElementById("answer2label").textContent = quiz[currentQuestion].answers[2];
-  document.getElementById("answer3label").textContent = quiz[currentQuestion].answers[3];
+  document.getElementById("question").textContent =
+   quiz[currentQuestion].question;
+  document.getElementById("answer0label").textContent =
+   quiz[currentQuestion].answers[0];
+  document.getElementById("answer1label").textContent =
+   quiz[currentQuestion].answers[1];
+  document.getElementById("answer2label").textContent =
+   quiz[currentQuestion].answers[2];
+  document.getElementById("answer3label").textContent =
+   quiz[currentQuestion].answers[3];
 }
 
 function checkAnswer() {
@@ -63,6 +68,24 @@ showQuestion();
 document.getElementById("submit").addEventListener("click", checkAnswer);
 document.getElementById("submit").addEventListener("click", nextQuestion);
 
+// Create a new button element
+const button = document.createElement("button");
+
+// Set the text and attributes of the button
+button.textContent = "Click me!";
+button.setAttribute("type", "button");
+button.setAttribute("id", "myButton");
+
+choicesEl.addEventListener("click", function (e) {
+  let value = e.target.innerText;
+  let correctChoice = quiz[currentQuestion].correct;
+  if (value === correctChoice) {
+    console.log("Correct");
+  } else {
+    console.log("Wrong");
+  }
+});
+
 // Set the timer duration to 75 seconds
 const timerDuration = 75;
 
@@ -87,22 +110,3 @@ function startTimer() {
 
 // Add event listener to start button
 startButton.addEventListener("click", startTimer);
-
-
-// Create a new button element
-const button = document.createElement("button");
-
-// Set the text and attributes of the button
-button.textContent = "Click me!";
-button.setAttribute("type", "button");
-button.setAttribute("id", "myButton");
-
-choicesEl.addEventListener("click", function (e){
-  let value = e.target.innerText;
-  let correctChoice = quiz[currentQuestion].correct;
-  if (value === correctChoice) {
-    console.log("Correct");
-  } else {
-    console.log("Wrong");
-  }
-});
