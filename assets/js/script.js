@@ -57,7 +57,10 @@ function nextQuestion() {
     document.getElementById("answer0").style.display = "none";
     document.getElementById("answer1").style.display = "none";
     document.getElementById("answer2").style.display = "none";
+    document.getElementById("answer3").style.display = "none";
     document.getElementById("submit").style.display = "none";
+    clearInterval(timerElement);
+    return;
   }
 }
 
@@ -83,10 +86,12 @@ choicesEl.addEventListener("click", function (e) {
     console.log("Correct");
     addEventListener("click", checkAnswer);
     addEventListener("click", nextQuestion);
+    score++;
   } else {
     console.log("Wrong");
     addEventListener("click", checkAnswer);
     addEventListener("click", nextQuestion);
+    secondsLeft -= 10;
   }
 });
 
