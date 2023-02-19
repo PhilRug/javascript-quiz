@@ -117,7 +117,7 @@ startButton.addEventListener("click", function () {
   startTimer();
   document.getElementById('ruleEl').style.display = 'none';
   document.getElementById('startBtn').style.display = 'none';
-  document.querySelector('quiz-title').style.display = 'flex';
-  document.querySelector('option').style.display = 'flex';
+  document.getElementById('quiz-title').style.display = 'flex';
+  document.getElementById('option').style.display = 'flex';
 });
   
