@@ -87,7 +87,6 @@ choicesEl.addEventListener("click", function (e) {
     console.log("Wrong");
     addEventListener("click", checkAnswer);
     addEventListener("click", nextQuestion);
-    timeLeft -= 10
   }
 });
 
