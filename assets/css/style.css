@@ -41,7 +41,7 @@
 
 .timer {
 	justify-content: end;
-    position: absolute;
+    position: fixed;
     top:-15px ;
     right:15px ;
 }
@@ -96,6 +96,7 @@
 
 .option:hover {
 	background-color: var(--pink);
+	cursor: pointer;
 }
 
 .ul p {
@@ -104,9 +105,6 @@
 	margin: 15px;
 }
 
-.div answer:hover {
-	background-color: var(--pink);
-}
 
 .btn {
 

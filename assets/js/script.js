@@ -1,18 +1,20 @@
+var choicesEl = document.getElementById("choices");
+
 const quiz = [
   {
     question: "What is not a coding language?",
     answers: ["1. C+-", "2. CSS", "3. Javascript", "4. HTML"],
-    correct: 0
+    correct: "1. C+-",
   },
   {
     question: "How do you create a link?",
-    answers: ["<p>", "<a href>", "<li>", "<h1>"],
-    correct: 1
+    answers: ["1. <p>", "2. <a href>", "3. <li>", "4. <h1>"],
+    correct: "2. <a href>",
   },
   {
     question: "Where would you sort variables in CSS?",
-    answers: [".p", ".header", "*", ":root"],
-    correct: 3
+    answers: ["1. .p", "2. .header", "3. *", "4. :root"],
+    correct: "4. :root",
   }
 ];
 
@@ -20,8 +22,7 @@ const quiz = [
 let currentQuestion = 0;
 let score = 0;
 
-function showQuestion() {
-  
+function showQuestion() {  
   document.getElementById("question").textContent = quiz[currentQuestion].question;
   document.getElementById("answer0label").textContent = quiz[currentQuestion].answers[0];
   document.getElementById("answer1label").textContent = quiz[currentQuestion].answers[1];
@@ -62,24 +63,31 @@ showQuestion();
 document.getElementById("submit").addEventListener("click", checkAnswer);
 document.getElementById("submit").addEventListener("click", nextQuestion);
 
+// Set the timer duration to 75 seconds
+const timerDuration = 75;
 
+// Get the timer element
+const timerElement = document.getElementById("timer");
 
-var countDownDate;
-var countdownTimer;
+// Get the start button element
+const startButton = document.getElementById("start-btn");
 
-document.getElementById("countdown-btn").addEventListener("click", function() {
-  countDownDate = new Date().getTime() + 75000;
-  countdownTimer = setInterval(function() {
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
-    var seconds = Math.floor((distance % (1000 * 75)) / 1000);
-    document.getElementById("countdown").innerHTML = "Time remaining: " + seconds + "s";
-    if (distance < 0) {
-      clearInterval(countdownTimer);
-      document.getElementById("countdown").innerHTML = "Time's up!";
+// Function to start the timer
+function startTimer() {
+  let secondsLeft = timerDuration;
+  setInterval(() => {
+    secondsLeft--;
+    if (secondsLeft >= 0) {
+      timerElement.textContent = `Timer: ${secondsLeft} seconds`;
+    } else {
+      timerElement.textContent = "Time's up!";
     }
   }, 1000);
-});
+}
+
+// Add event listener to start button
+startButton.addEventListener("click", startTimer);
+
 
 // Create a new button element
 const button = document.createElement("button");
@@ -89,6 +97,12 @@ button.textContent = "Click me!";
 button.setAttribute("type", "button");
 button.setAttribute("id", "myButton");
 
-// Add the button to an existing HTML element
-const container = document.getElementById("option");
-container.appendChild(button);
+choicesEl.addEventListener("click", function (e){
+  let value = e.target.innerText;
+  let correctChoice = quiz[currentQuestion].correct;
+  if (value === correctChoice) {
+    console.log("Correct");
+  } else {
+    console.log("Wrong");
+  }
+});
