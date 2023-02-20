@@ -1,5 +1,6 @@
 var choicesEl = document.getElementById("choices");
-
+var timerInterval;
+var deductInterval;
 const quiz = [
   {
     question: "What is not a coding language?",
@@ -43,7 +44,9 @@ function checkAnswer() {
     document.getElementById("result").textContent = "Correct!";
   } else {
     document.getElementById("result").textContent = "Incorrect!";
-    secondsLeft -= 10;
+    deductInterval = setInterval(() => {
+      secondsLeft -= 10;
+    });
   }
 }
 
@@ -60,7 +63,7 @@ function nextQuestion() {
     document.getElementById("answer2").style.display = "none";
     document.getElementById("answer3").style.display = "none";
     document.getElementById("submit").style.display = "none";
-    clearTimeout(timerElement);
+    clearInterval(timerInterval);;
     return;
   }
 }
@@ -108,7 +111,7 @@ const startButton = document.getElementById("startBtn");
 // Function to start the timer
 function startTimer() {
   let secondsLeft = timerDuration;
-  setInterval(() => {
+  timerInterval = setInterval(() => {
     secondsLeft--;
     if (secondsLeft >= 0) {
       timerElement.textContent = `Timer: ${secondsLeft} seconds`;
