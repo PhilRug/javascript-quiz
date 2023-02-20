@@ -43,6 +43,7 @@ function checkAnswer() {
     document.getElementById("result").textContent = "Correct!";
   } else {
     document.getElementById("result").textContent = "Incorrect!";
+    secondsLeft -= 10;
   }
 }
 
@@ -59,13 +60,13 @@ function nextQuestion() {
     document.getElementById("answer2").style.display = "none";
     document.getElementById("answer3").style.display = "none";
     document.getElementById("submit").style.display = "none";
-    clearInterval(timerElement);
+    clearTimeout(timerElement);
     return;
   }
 }
 
 // Start the quiz
-showQuestion();
+//showQuestion();
 
 // Set up event listeners
 document.getElementById("submit").addEventListener("click", checkAnswer);
@@ -91,7 +92,7 @@ choicesEl.addEventListener("click", function (e) {
     console.log("Wrong");
     addEventListener("click", checkAnswer);
     addEventListener("click", nextQuestion);
-    secondsLeft -= 10;
+    
   }
 });
 
@@ -113,6 +114,7 @@ function startTimer() {
       timerElement.textContent = `Timer: ${secondsLeft} seconds`;
     } else {
       timerElement.textContent = "Time's up!";
+      return ;
     }
   }, 1000);
 }
@@ -123,10 +125,13 @@ startButton.addEventListener("click", function () {
   showQuestion();
   document.getElementById('ruleEl').style.display = 'none';
   document.getElementById('startBtn').style.display = 'none';
-  var quizTitle = document.querySelector('quiz-title');
+  var quizTitle = document.querySelector('.quiz-title');
+  console.log(quizTitle, "quizTitle")
   quizTitle.style.display = 'flex';
   //document.querySelector('.quiz-title').style.display = 'flex';
   //document.querySelectorAll('.option').style.display = 'flex';
   var options = document.querySelectorAll('.option');
+  console.log(options, "options")
+  //document.getElementById('choices').style.display = 'flex';
 });
   
