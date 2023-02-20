@@ -110,6 +110,7 @@
 	display: none
 }
 
-/*#choices {
+#choices {
 	display: none;
+	flex-direction: column;
 }

@@ -132,6 +132,6 @@ startButton.addEventListener("click", function () {
   //document.querySelectorAll('.option').style.display = 'flex';
   var options = document.querySelectorAll('.option');
   console.log(options, "options")
-  //document.getElementById('choices').style.display = 'flex';
+  document.getElementById('choices').style.display = 'flex';
 });
   
