@@ -16,6 +16,16 @@ const quiz = [
     question: "Where would you sort variables in CSS?",
     answers: ["1. .p", "2. .header", "3. *", "4. :root"],
     correct: "4. :root",
+  },
+  {
+    question: "What would you use to make a functional button in javascript?",
+    answers: ["1. getElementById", "2. querySelectorAll", "3. addEventListener", "4. console.log"],
+    correct: "3. addEventListener",
+  },
+  {
+    question: "Arrays in javascript can be used to store _______?",
+    answers: ["1. numbers and strings", "2. other arrays", "3. booleans", "4. all of the above"],
+    correct: "4. all of the above",
   }
 ];
 
@@ -43,10 +53,9 @@ function checkAnswer() {
     score++;
     document.getElementById("result").textContent = "Correct!";
   } else {
+    timeLeft -= 10;
     document.getElementById("result").textContent = "Incorrect!";
-    deductInterval = setInterval(() => {
-      secondsLeft -= 10;
-    });
+ 
   }
 }
 
@@ -57,19 +66,17 @@ function nextQuestion() {
     showQuestion();
     document.getElementById("result").textContent = "";
   } else {
-    document.getElementById("question").textContent = "You finished the quiz! Your score is " + score + "/" + quiz.length;
+    document.getElementById("question").textContent = "You finished the quiz! Your score is " + score * 100/quiz.length + "%";
     document.getElementById("answer0").style.display = "none";
     document.getElementById("answer1").style.display = "none";
     document.getElementById("answer2").style.display = "none";
     document.getElementById("answer3").style.display = "none";
     document.getElementById("submit").style.display = "none";
-    clearInterval(timerInterval);;
+    clearInterval(timerInterval);
+    document.getElementById('restartBtn').style.display = 'flex';
     return;
   }
 }
-
-// Start the quiz
-//showQuestion();
 
 // Set up event listeners
 document.getElementById("submit").addEventListener("click", checkAnswer);
@@ -95,7 +102,6 @@ choicesEl.addEventListener("click", function (e) {
     console.log("Wrong");
     addEventListener("click", checkAnswer);
     addEventListener("click", nextQuestion);
-    
   }
 });
 
@@ -131,10 +137,34 @@ startButton.addEventListener("click", function () {
   var quizTitle = document.querySelector('.quiz-title');
   console.log(quizTitle, "quizTitle")
   quizTitle.style.display = 'flex';
-  //document.querySelector('.quiz-title').style.display = 'flex';
-  //document.querySelectorAll('.option').style.display = 'flex';
   var options = document.querySelectorAll('.option');
   console.log(options, "options")
   document.getElementById('choices').style.display = 'flex';
 });
-  
+// event listener to go back
+const refreshButton = document.getElementById("restartBtn");
+refreshButton.addEventListener("click", function () {
+  location.reload();
+});
+
+//high score
+let playerScore = 0;
+
+function updateScore(points) {
+  playerScore += points;
+}
+
+function updateHighScore() {
+  let highScore = localStorage.getItem('highScore');
+  if (!highScore || playerScore > highScore) {
+    localStorage.setItem('highScore', playerScore);
+  }
+}
+
+let scoreElement = document.getElementById('score');
+let highScoreElement = document.getElementById('high-score');
+
+function displayScore() {
+  scoreElement.textContent = `Score: ${playerScore}`;
+  highScoreElement.textContent = `High Score: ${localStorage.getItem('highScore') || 0}`;
+}
