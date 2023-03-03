@@ -148,6 +148,8 @@ refreshButton.addEventListener("click", function () {
 });
 
 //high score
+var highScores = [];
+var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 let playerScore = 0;
 
 function updateScore(points) {

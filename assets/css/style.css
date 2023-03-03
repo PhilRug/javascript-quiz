@@ -130,3 +130,22 @@
 	border-radius: 12px;
 	cursor: pointer;
 }
+
+@media (max-width: 690px) {
+	#choices {
+	  font-size: 1rem;
+	  margin: 16px 0px 0px 0px;
+	  padding: 10px 15px;
+	}
+  
+	.quiz-form {
+	  font-size: 1rem;
+	}
+  }
+  
+  @media (max-width: 500px) {
+	#choices {
+	  font-size: 0.8rem;
+	}
+  }
+  
