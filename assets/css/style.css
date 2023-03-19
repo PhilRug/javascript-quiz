@@ -131,6 +131,23 @@
 	cursor: pointer;
 }
 
+.score-buttons {
+	background-color: var(--dark-purple);
+	color: var(--white);
+	height: 60px;
+	width: 100px;
+	border-radius: 12px;
+	cursor: pointer;
+	flex-direction: row;
+	
+}
+
+#high-scores-container {
+	display: flex;
+	justify-content: center;
+	
+}
+
 @media (max-width: 690px) {
 	#choices {
 	  font-size: 1rem;
