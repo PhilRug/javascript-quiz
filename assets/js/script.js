@@ -1,6 +1,7 @@
 var choicesEl = document.getElementById("choices");
 var timerInterval;
 var deductInterval;
+
 const quiz = [
   {
     question: "What is not a coding language?",
@@ -33,31 +34,83 @@ const quiz = [
 let currentQuestion = 0;
 let score = 0;
 
-function showQuestion() {  
+function showQuestion() {
   document.getElementById("question").textContent =
-   quiz[currentQuestion].question;
+    quiz[currentQuestion].question;
   document.getElementById("answer0label").textContent =
-   quiz[currentQuestion].answers[0];
+    quiz[currentQuestion].answers[0];
   document.getElementById("answer1label").textContent =
-   quiz[currentQuestion].answers[1];
+    quiz[currentQuestion].answers[1];
   document.getElementById("answer2label").textContent =
-   quiz[currentQuestion].answers[2];
+    quiz[currentQuestion].answers[2];
   document.getElementById("answer3label").textContent =
-   quiz[currentQuestion].answers[3];
+    quiz[currentQuestion].answers[3];
 }
 
-function checkAnswer() {
-  // Check the selected answer and display the result
-  const selected = document.querySelector('input[name="answer"]:checked').value;
-  if (selected == quiz[currentQuestion].correct) {
+// Set the timer duration to 75 seconds
+const timerDuration = 75;
+
+// Get the timer element
+const timerElement = document.getElementById("timer");
+
+// let timerInterval;
+let secondsLeft;
+
+function startTimer() {
+  secondsLeft = timerDuration;
+  timerElement.textContent = `Timer: ${secondsLeft} seconds`;
+
+  timerInterval = setInterval(() => {
+    secondsLeft--;
+    if (secondsLeft >= 0) {
+      timerElement.textContent = `Timer: ${secondsLeft} seconds`;
+    } else {
+      clearInterval(timerInterval);
+      timerElement.textContent = "Time's up!";
+      endQuiz(); // Call the function to end the quiz
+      return;
+    }
+  }, 1000);
+}
+
+// Replace the existing checkAnswer function with the updated version
+function checkAnswer(e) {
+  e.preventDefault();
+
+  const selected = e.target.innerText;
+  if (selected === quiz[currentQuestion].correct) {
     score++;
     document.getElementById("result").textContent = "Correct!";
   } else {
-    timeLeft -= 10;
-    document.getElementById("result").textContent = "Incorrect!";
- 
+    secondsLeft -= 10;
+    if (secondsLeft < 0) {
+      secondsLeft = 0; // Ensure the timer doesn't go negative
+    }
+    document.getElementById("result").textContent = "";
+    timerElement.textContent = `Timer: ${secondsLeft} seconds`;
   }
+
+  nextQuestion();
 }
+
+// Remove the existing event listener
+document.getElementById("submit").removeEventListener("click", checkAnswer);
+
+// Add event listener to choicesEl
+choicesEl.addEventListener("click", checkAnswer);
+
+function endQuiz() {
+  document.getElementById("question").textContent = "You finished the quiz! Your score is " + (score * 100) / quiz.length + "%";
+  document.getElementById("answer0").style.display = "none";
+  document.getElementById("answer1").style.display = "none";
+  document.getElementById("answer2").style.display = "none";
+  document.getElementById("answer3").style.display = "none";
+  document.getElementById("submit").style.display = "none";
+  document.getElementById("result").textContent = "";
+  document.getElementById("restartBtn").style.display = "flex";
+  document.getElementById("submit-score").style.display = "flex";
+}
+
 
 function nextQuestion() {
   // Move on to the next question or end the quiz
@@ -66,13 +119,14 @@ function nextQuestion() {
     showQuestion();
     document.getElementById("result").textContent = "";
   } else {
-    document.getElementById("question").textContent = "You finished the quiz! Your score is " + score * 100/quiz.length + "%";
+    document.getElementById("question").textContent = "You finished the quiz! Your score is " + score * 100 / quiz.length + "%";
     document.getElementById("answer0").style.display = "none";
     document.getElementById("answer1").style.display = "none";
     document.getElementById("answer2").style.display = "none";
     document.getElementById("answer3").style.display = "none";
     document.getElementById("submit").style.display = "none";
     clearInterval(timerInterval);
+    document.getElementById('restartBtn').style.display = 'flex';
     document.getElementById('restartBtn').style.display = 'flex';
     return;
   }
@@ -91,42 +145,28 @@ button.setAttribute("type", "button");
 button.setAttribute("id", "myButton");
 
 choicesEl.addEventListener("click", function (e) {
-  let value = e.target.innerText;
-  let correctChoice = quiz[currentQuestion].correct;
-  if (value === correctChoice) {
-    console.log("Correct");
-    addEventListener("click", checkAnswer);
-    addEventListener("click", nextQuestion);
-    score++;
-  } else {
-    console.log("Wrong");
-    addEventListener("click", checkAnswer);
-    addEventListener("click", nextQuestion);
+  if (e.target.matches(".option")) {
+    let value = e.target.innerText;
+    let correctChoice = quiz[currentQuestion].correct;
+    if (value === correctChoice) {
+      console.log("Correct");
+      checkAnswer();
+      nextQuestion();
+      score++;
+    } else {
+      console.log("Wrong");
+      checkAnswer();
+      nextQuestion();
+    }
   }
 });
 
-// Set the timer duration to 75 seconds
-const timerDuration = 75;
-
-// Get the timer element
-const timerElement = document.getElementById("timer");
 
 // Get the start button element
 const startButton = document.getElementById("startBtn");
 
 // Function to start the timer
-function startTimer() {
-  let secondsLeft = timerDuration;
-  timerInterval = setInterval(() => {
-    secondsLeft--;
-    if (secondsLeft >= 0) {
-      timerElement.textContent = `Timer: ${secondsLeft} seconds`;
-    } else {
-      timerElement.textContent = "Time's up!";
-      return ;
-    }
-  }, 1000);
-}
+
 
 // Add event listener to start button
 startButton.addEventListener("click", function () {
