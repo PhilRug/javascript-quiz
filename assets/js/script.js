@@ -74,9 +74,9 @@ function startTimer() {
   }, 1000);
 }
 
-// Replace the existing checkAnswer function with the updated version
+// Function to check answers
 function checkAnswer(e) {
-  // e.preventDefault();
+  e.preventDefault();
 
   const selected = e.target.innerText;
   if (selected === quiz[currentQuestion].correct) {
@@ -131,7 +131,7 @@ function nextQuestion() {
 
 // Set up event listeners
 document.getElementById("submit").addEventListener("click", checkAnswer);
-document.getElementById("submit").addEventListener("click", nextQuestion);
+// document.getElementById("submit").removeEventListener("click", nextQuestion);
 
 // Create a new button element
 const button = document.createElement("button");
@@ -158,10 +158,8 @@ choicesEl.addEventListener("click", function (e) {
   }
 });
 
-
 // Get the start button element
 const startButton = document.getElementById("startBtn");
-
 
 function showScoreForm() {
   // Hide the quiz elements
@@ -173,7 +171,7 @@ function showScoreForm() {
   document.getElementById("score-form").style.display = "block";
 
   // Display the final score
-  const finalScore = (score * 100) / quiz.length;
+  const finalScore = (score / quiz.length) * 100;
   const resultElement = document.getElementById("supertitle");
   resultElement.textContent = `You finished the quiz! Your score is ${finalScore}% `;
   resultElement.classList.add("final-score"); // Add the CSS class "final-score"
@@ -206,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const initials = initialsInput.value.trim();
 
       if (initials !== "") {
-          const submittedScore = localStorage.getItem("submittedScore");
+          const submittedScore = Math.round((score / quiz.length) * 100);
           const highscores = JSON.parse(localStorage.getItem("highscores")) || [];
 
           const newScore = {

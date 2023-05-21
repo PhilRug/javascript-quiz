@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Retrieve the high scores from localStorage
     const highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+
+    // Sort the high scores based on the score in descending order
+    highscores.sort((a, b) => b.score - a.score);
   
     // Get the high scores list element
     const highScoresList = document.getElementById("high-scores-list");
@@ -28,5 +31,3 @@ document.addEventListener("DOMContentLoaded", function () {
       highScoresList.innerHTML = "";
     });
   });
-  
-  
