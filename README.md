@@ -6,4 +6,4 @@ This is a short, timed quiz that will test the users knowledge about coding. Thi
 ![quiz intro](assets/css/images/front.png)
 ![high score page](assets/css/images/high-score.png)
 
-live site can be found at https://github.com/PhilRug/javascript-quiz
+live site can be found at https://philrug.github.io/javascript-quiz/
