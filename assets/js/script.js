@@ -76,7 +76,7 @@ function startTimer() {
 
 // Replace the existing checkAnswer function with the updated version
 function checkAnswer(e) {
-  e.preventDefault();
+  // e.preventDefault();
 
   const selected = e.target.innerText;
   if (selected === quiz[currentQuestion].correct) {
@@ -107,8 +107,7 @@ function endQuiz() {
   document.getElementById("answer2").style.display = "none";
   document.getElementById("answer3").style.display = "none";
   document.getElementById("submit").style.display = "none";
-  document.getElementById("result").textContent = "";
-  document.getElementById("restartBtn").style.display = "flex";
+  document.getElementById("result").textContent = "";  
   document.getElementById("submit-score").style.display = "flex";
 }
 
@@ -126,10 +125,6 @@ function nextQuestion() {
       "%";
 
     showScoreForm();
-
-    // Show the "Go Back" button
-    document.getElementById("restartBtn").style.display = "inline-block";
-
     return;
   }
 }
@@ -197,11 +192,6 @@ startButton.addEventListener("click", function () {
   console.log(options, "options")
   document.getElementById('choices').style.display = 'flex';
 });
-// event listener to go back
-const refreshButton = document.getElementById("restartBtn");
-refreshButton.addEventListener("click", function () {
-  location.reload();
-});
 
 document.addEventListener("DOMContentLoaded", function () {
   // Retrieve the submit button, initials input, and go back button elements
@@ -233,8 +223,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // // Event listener for the go back button
-  // goBackBtn.addEventListener("click", function () {
-  //     // Redirect to the main page
-  //     window.location.href = "index.html";
-  // });
+  goBackBtn.addEventListener("click", function () {
+      // Redirect to the main page
+      window.location.href = "index.html";
+  });
 });
