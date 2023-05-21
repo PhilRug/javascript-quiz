@@ -56,6 +56,7 @@ const timerElement = document.getElementById("timer");
 // let timerInterval;
 let secondsLeft;
 
+// Function to start the timer
 function startTimer() {
   secondsLeft = timerDuration;
   timerElement.textContent = `Timer: ${secondsLeft} seconds`;
@@ -80,7 +81,7 @@ function checkAnswer(e) {
   const selected = e.target.innerText;
   if (selected === quiz[currentQuestion].correct) {
     score++;
-    document.getElementById("result").textContent = "Correct!";
+    document.getElementById("result").textContent = "";
   } else {
     secondsLeft -= 10;
     if (secondsLeft < 0) {
@@ -111,7 +112,6 @@ function endQuiz() {
   document.getElementById("submit-score").style.display = "flex";
 }
 
-
 function nextQuestion() {
   // Move on to the next question or end the quiz
   if (currentQuestion < quiz.length - 1) {
@@ -119,15 +119,17 @@ function nextQuestion() {
     showQuestion();
     document.getElementById("result").textContent = "";
   } else {
-    document.getElementById("question").textContent = "You finished the quiz! Your score is " + score * 100 / quiz.length + "%";
-    document.getElementById("answer0").style.display = "none";
-    document.getElementById("answer1").style.display = "none";
-    document.getElementById("answer2").style.display = "none";
-    document.getElementById("answer3").style.display = "none";
-    document.getElementById("submit").style.display = "none";
     clearInterval(timerInterval);
-    document.getElementById('restartBtn').style.display = 'flex';
-    document.getElementById('restartBtn').style.display = 'flex';
+    document.getElementById("question").textContent =
+      "You finished the quiz! Your score is " +
+      ((score * 100) / quiz.length) +
+      "%";
+
+    showScoreForm();
+
+    // Show the "Go Back" button
+    document.getElementById("restartBtn").style.display = "inline-block";
+
     return;
   }
 }
@@ -165,8 +167,22 @@ choicesEl.addEventListener("click", function (e) {
 // Get the start button element
 const startButton = document.getElementById("startBtn");
 
-// Function to start the timer
 
+function showScoreForm() {
+  // Hide the quiz elements
+  document.getElementById("question").style.display = "none";
+  document.getElementById("choices").style.display = "none";
+  document.getElementById("submit").style.display = "none";
+
+  // Show the score submission form
+  document.getElementById("score-form").style.display = "block";
+
+  // Display the final score
+  const finalScore = (score * 100) / quiz.length;
+  const resultElement = document.getElementById("supertitle");
+  resultElement.textContent = `You finished the quiz! Your score is ${finalScore}% `;
+  resultElement.classList.add("final-score"); // Add the CSS class "final-score"
+}
 
 // Add event listener to start button
 startButton.addEventListener("click", function () {
@@ -187,26 +203,38 @@ refreshButton.addEventListener("click", function () {
   location.reload();
 });
 
-//high score
-var highScores = [];
-var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-let playerScore = 0;
+document.addEventListener("DOMContentLoaded", function () {
+  // Retrieve the submit button, initials input, and go back button elements
+  const submitScoreBtn = document.getElementById("submit-score-btn");
+  const initialsInput = document.getElementById("initials");
+  const goBackBtn = document.getElementById("go-back");
 
-function updateScore(points) {
-  playerScore += points;
-}
+  // Event listener for the submit button
+  submitScoreBtn.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent form submission
 
-function updateHighScore() {
-  let highScore = localStorage.getItem('highScore');
-  if (!highScore || playerScore > highScore) {
-    localStorage.setItem('highScore', playerScore);
-  }
-}
+      const initials = initialsInput.value.trim();
 
-let scoreElement = document.getElementById('score');
-let highScoreElement = document.getElementById('high-score');
+      if (initials !== "") {
+          const submittedScore = localStorage.getItem("submittedScore");
+          const highscores = JSON.parse(localStorage.getItem("highscores")) || [];
 
-function displayScore() {
-  scoreElement.textContent = `Score: ${playerScore}`;
-  highScoreElement.textContent = `High Score: ${localStorage.getItem('highScore') || 0}`;
-}
+          const newScore = {
+              initials: initials,
+              score: submittedScore,
+          };
+
+          highscores.push(newScore);
+          localStorage.setItem("highscores", JSON.stringify(highscores));
+
+          // Redirect to the highscore page
+          window.location.assign("highscore.html");
+      }
+  });
+
+  // // Event listener for the go back button
+  // goBackBtn.addEventListener("click", function () {
+  //     // Redirect to the main page
+  //     window.location.href = "index.html";
+  // });
+});

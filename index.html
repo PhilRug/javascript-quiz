@@ -10,38 +10,45 @@
 <body>
     <section class="header">
         <h1><a href="./highscore.html">View High Scores</a></h1>
-            <div id="timer">Time: 75</div>
+        <div id="timer">Time: 75</div>
     </section>
     <section class="rules" id="ruleEl">
         <h1>Coding Quiz Challenge</h1>
         <p>Try to answer the following code-related questions within the time limit.<br>
-        Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+            Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
     </section>
-    
+
     <div class="container">
-        
-    <button class="start-btn" id="startBtn">Start Quiz</button>
+
+        <button class="start-btn" id="startBtn">Start Quiz</button>
 
         <form id="quiz-form">
-          <div class="quiz-title" id="question"></div>
+            <div class="quiz-title" id="question"></div>
             <div id="choices">
-                <div class="option" name="answer" value="0" id="answer0"><label for="answer0" id="answer0label"></label></div>         
-                <div class="option" name="answer" value="1" id="answer1"><label for="answer1" id="answer1label"></label></div>      
-                <div class="option" name="answer" value="2" id="answer2"><label for="answer2" id="answer2label"></label></div>         
+                <div class="option" name="answer" value="0" id="answer0"><label for="answer0" id="answer0label"></label></div>
+                <div class="option" name="answer" value="1" id="answer1"><label for="answer1" id="answer1label"></label></div>
+                <div class="option" name="answer" value="2" id="answer2"><label for="answer2" id="answer2label"></label></div>
                 <div class="option" name="answer" value="3" id="answer3"><label for="answer2" id="answer3label"></label></div>
             </div>
         </form>
         <button id="submit">Submit</button>
-        <div id="result"></div> 
+        <div id="result"></div>
+
         <div id="score-form" style="display:none;">
-            <label for="initials">Enter Your Initials:</label>
-            <input type="text" id="initials" name="initials">
-            <button id="submit-score">Submit</button>
+            <div class="supertitle-container">
+                <h2 class="final-score" id="supertitle"></h2>
+            </div>
+            <div class="input-container">
+                <label for="initials">Enter Your Initials:</label>
+                <input type="text" id="initials" name="initials">
+            </div>
+            <div class="button-container">
+                <button class='btn' id="submit-score-btn">Submit Score</button>
+                <button class='btn' id="go-back" onclick="window.location.href = 'index.html';">Go Back</button>
+            </div>
         </div>
-        <button class="end-btn" id="restartBtn">Go Back</button>
-        <button class="end-btn" id="submit-score">Submit Score</button>
     </div>
-    
+
     <script src="assets/js/script.js"></script>
 </body>
 </html>
